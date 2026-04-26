@@ -1,9 +1,9 @@
-# Gladius Cooking
+# ugly Cooking
 
-**Gladius Cooking** is a **FiveM** resource for **QBCore** with **ox_inventory**: a multi-step cooking flow (preparation → cooking), **ox_lib** skillchecks, **NUI** menu, optional **ox_target** / **qb-target** zones at kitchen coordinates, and server-side validation (job, distance, ingredients) before items are removed or granted.
+**ugly Cooking** is a **FiveM** resource for **QBCore** with **ox_inventory**: a multi-step cooking flow (preparation → cooking), **ox_lib** skillchecks, **NUI** menu, optional **ox_target** / **qb-target** zones at kitchen coordinates, and server-side validation (job, distance, ingredients) before items are removed or granted.
 
 **Version:** 1.0.0 (see `fxmanifest.lua`)  
-**Author:** Gladius Development
+**Author:** ugly Development
 
 ---
 
@@ -49,8 +49,8 @@ Place the folder under your resources tree, for example:
 
 ```text
 resources/
-  [gladius]/
-    gladius-cooking/
+  [ugly]/
+    ugly-cooking/
       fxmanifest.lua
       config.lua
       ITEMS.lua
@@ -59,7 +59,7 @@ resources/
 
 ### 2. Register items in ox_inventory
 
-Open `gladius-cooking/ITEMS.lua`. Merge the returned table into **`ox_inventory/data/items.lua`** (or your equivalent items file), following ox_inventory’s format. The file header explains:
+Open `ugly-cooking/ITEMS.lua`. Merge the returned table into **`ox_inventory/data/items.lua`** (or your equivalent items file), following ox_inventory’s format. The file header explains:
 
 - Copy item definitions from `ITEMS.lua` into ox_inventory’s items.
 - Add item images to **`ox_inventory/web/images/`** (names must match what you use in recipes / config, e.g. `gourmet_burger.png`).
@@ -76,16 +76,16 @@ ensure oxmysql
 ensure ox_lib
 ensure ox_inventory
 ensure ox_target
-ensure [gladius]
+ensure [ugly]
 ```
 
 Or explicitly:
 
 ```cfg
-ensure gladius-cooking
+ensure ugly-cooking
 ```
 
-If you use a bracket folder `ensure [gladius]`, ensure `gladius-cooking` is inside that folder.
+If you use a bracket folder `ensure [ugly]`, ensure `ugly-cooking` is inside that folder.
 
 ### 4. Adjust `config.lua`
 
@@ -110,7 +110,7 @@ If `Config.CookingEffects.interactSound.enabled` is true, add **`chopping.ogg`**
 Restart the server or run:
 
 ```text
-ensure gladius-cooking
+ensure ugly-cooking
 ```
 
 Test with a character whose **job** exists in `Config.Shops`, standing at a **kitchen location**, with ingredients in inventory.
@@ -120,9 +120,9 @@ Test with a character whose **job** exists in `Config.Shops`, standing at a **ki
 ## How it works (short)
 
 1. Client checks job + kitchen proximity (ox_lib **points** and/or **target**).
-2. Opening the menu requests inventory summary via callback **`gladius_cooking:server:GetPlayerInventory`**.
-3. Starting a recipe runs validation on the server (**`gladius_cooking:server:ValidateIngredients`**: job, recipe, distance, counts).
-4. Client runs prep/cook progress and skillchecks; finishing triggers **`gladius_cooking:server:FinalizeCooking`**, which re-validates, removes ingredients, adds the result item with metadata, and uses a per-player lock against spam.
+2. Opening the menu requests inventory summary via callback **`ugly_cooking:server:GetPlayerInventory`**.
+3. Starting a recipe runs validation on the server (**`ugly_cooking:server:ValidateIngredients`**: job, recipe, distance, counts).
+4. Client runs prep/cook progress and skillchecks; finishing triggers **`ugly_cooking:server:FinalizeCooking`**, which re-validates, removes ingredients, adds the result item with metadata, and uses a per-player lock against spam.
 
 ---
 
