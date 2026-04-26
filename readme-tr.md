@@ -1,9 +1,9 @@
-# Gladius Cooking
+# ugly Cooking
 
-**Gladius Cooking**, **QBCore** ve **ox_inventory** kullanan bir **FiveM** kaynağıdır: çok aşamalı pişirme akışı (hazırlık → pişirme), **ox_lib** beceri kontrolleri, **NUI** menü, mutfak koordinatlarında isteğe bağlı **ox_target** / **qb-target** etkileşimi ve eşya silinmeden/verilmeden önce sunucu tarafında doğrulama (meslek, mesafe, malzeme).
+**ugly Cooking**, **QBCore** ve **ox_inventory** kullanan bir **FiveM** kaynağıdır: çok aşamalı pişirme akışı (hazırlık → pişirme), **ox_lib** beceri kontrolleri, **NUI** menü, mutfak koordinatlarında isteğe bağlı **ox_target** / **qb-target** etkileşimi ve eşya silinmeden/verilmeden önce sunucu tarafında doğrulama (meslek, mesafe, malzeme).
 
 **Sürüm:** 1.0.0 (`fxmanifest.lua`)  
-**Yazar:** Gladius Development
+**Yazar:** ugly Development
 
 ---
 
@@ -49,8 +49,8 @@
 
 ```text
 resources/
-  [gladius]/
-    gladius-cooking/
+  [ugly]/
+    ugly-cooking/
       fxmanifest.lua
       config.lua
       ITEMS.lua
@@ -59,7 +59,7 @@ resources/
 
 ### 2. ox_inventory’de eşyaları tanımlayın
 
-`gladius-cooking/ITEMS.lua` dosyasını açın. Dönen tabloyu **`ox_inventory/data/items.lua`** dosyanıza (ox’ın beklediği biçimde) ekleyin. Dosya başlığında belirtildiği gibi:
+`ugly-cooking/ITEMS.lua` dosyasını açın. Dönen tabloyu **`ox_inventory/data/items.lua`** dosyanıza (ox’ın beklediği biçimde) ekleyin. Dosya başlığında belirtildiği gibi:
 
 - Tanımları ox_inventory `items` dosyanıza taşıyın.
 - Görselleri **`ox_inventory/web/images/`** altına koyun (tarif/config’te kullanılan isimlerle uyumlu, örn. `gourmet_burger.png`).
@@ -76,16 +76,16 @@ ensure oxmysql
 ensure ox_lib
 ensure ox_inventory
 ensure ox_target
-ensure [gladius]
+ensure [ugly]
 ```
 
 Veya doğrudan:
 
 ```cfg
-ensure gladius-cooking
+ensure ugly-cooking
 ```
 
-`ensure [gladius]` kullanıyorsanız `gladius-cooking` bu klasörün içinde olmalıdır.
+`ensure [ugly]` kullanıyorsanız `ugly-cooking` bu klasörün içinde olmalıdır.
 
 ### 4. `config.lua` düzenlemesi
 
@@ -110,7 +110,7 @@ ensure gladius-cooking
 Sunucuyu yeniden başlatın veya:
 
 ```text
-ensure gladius-cooking
+ensure ugly-cooking
 ```
 
 `Config.Shops`’ta tanımlı **iş**e sahip bir karakterle, **mutfak konumunda**, envanterde **malzemeler** varken test edin.
@@ -120,9 +120,9 @@ ensure gladius-cooking
 ## Kısa akış
 
 1. İstemci meslek + mutfak yakınlığını kontrol eder (ox_lib **points** ve/veya **target**).
-2. Menü açılınca **`gladius_cooking:server:GetPlayerInventory`** ile envanter özeti alınır.
-3. Tarif başlatılınca sunucu **`gladius_cooking:server:ValidateIngredients`** ile iş, tarif, mesafe ve miktarları doğrular.
-4. İstemci hazırlık/pişirme progress ve skillcheck çalıştırır; bitişte **`gladius_cooking:server:FinalizeCooking`** tekrar doğrular, malzemeleri düşer, metadata’lı son ürünü verir; oyuncu başına kilit spam’i engeller.
+2. Menü açılınca **`ugly_cooking:server:GetPlayerInventory`** ile envanter özeti alınır.
+3. Tarif başlatılınca sunucu **`ugly_cooking:server:ValidateIngredients`** ile iş, tarif, mesafe ve miktarları doğrular.
+4. İstemci hazırlık/pişirme progress ve skillcheck çalıştırır; bitişte **`ugly_cooking:server:FinalizeCooking`** tekrar doğrular, malzemeleri düşer, metadata’lı son ürünü verir; oyuncu başına kilit spam’i engeller.
 
 ---
 
